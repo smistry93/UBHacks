@@ -7,13 +7,23 @@
 
     <TextView android:text="@string/hello_world" android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:id="@+id/top_text"/>
+=======
+        android:id="@+id/camera_view" />
+>>>>>>> c2605fae02f429cb54c861554fe885d019dde429
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+<<<<<<< HEAD
         android:text="New Button"
         android:id="@+id/camera_button"
+=======
+        android:id="@+id/camera_button"
+        android:text="@string/button_send"
+        android:onClick="openCamera"
+>>>>>>> c2605fae02f429cb54c861554fe885d019dde429
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 

@@ -1,49 +1,36 @@
 package com.example.sunnymistry.ubhackingproject;
 
-import android.app.Activity;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
+
+import android.app.Activity;
+import android.view.*;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.net.Uri;
+import android.widget.Toast;
 import android.content.Intent;
-import android.provider.MediaStore;
 
 public class MainActivity extends Activity {
 
-    private Button myButton;
-
+    private Button btnProduct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         addListenerOnButton();
     }
-
-    public void addListenerOnButton() {
-        myButton = (Button)findViewById(R.id.camera_button);
-        myButton.setOnClickListener(new View.OnClickListener() {
-            private static final int CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE = 100;
-            private Uri fileUri;
+    private void addListenerOnButton() {
+        btnProduct = (Button) findViewById(R.id.camera_button);
+        btnProduct.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //create new Intent
-                Intent intent = new Intent(MediaStore.ACTION_VIDEO_CAPTURE);
+                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
+                startActivity(intent);
 
-                fileUri = getOutputMediaFileUri(MEDIA_TYPE_VIDEO);  // create a file to save the video
-                intent.putExtra(MediaStore.EXTRA_OUTPUT, fileUri);  // set the image file name
-
-                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1); // set the video image quality to high
-
-                // start the Video Capture Intent
-                startActivityForResult(intent, CAPTURE_VIDEO_ACTIVITY_REQUEST_CODE);
             }
         });
-
-
-
     }
 
     @Override
@@ -67,7 +54,4 @@ public class MainActivity extends Activity {
 
         return super.onOptionsItemSelected(item);
     }
-
-
-
 }
