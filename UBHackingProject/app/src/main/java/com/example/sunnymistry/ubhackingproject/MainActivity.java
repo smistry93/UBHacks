@@ -11,14 +11,20 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.content.Intent;
+import android.provider.MediaStore;
+import android.graphics.Bitmap;
+import android.widget.ImageView;
 
 public class MainActivity extends Activity {
+    static final int REQUEST_IMAGE_CAPTURE = 1888;
+    private ImageView imageView;
 
     private Button btnProduct;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.imageView = (ImageView)this.findViewById(R.id.imageView);
         addListenerOnButton();
     }
     private void addListenerOnButton() {
@@ -26,11 +32,22 @@ public class MainActivity extends Activity {
         btnProduct.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent("android.media.action.IMAGE_CAPTURE");
-                startActivity(intent);
-
+                dispatchTakePictureIntent();
             }
         });
+    }
+
+    private void dispatchTakePictureIntent() {
+        Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, REQUEST_IMAGE_CAPTURE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == REQUEST_IMAGE_CAPTURE && resultCode == RESULT_OK) {
+            Bitmap photo = (Bitmap) data.getExtras().get("data");
+            imageView.setImageBitmap(photo);
+        }
     }
 
     @Override

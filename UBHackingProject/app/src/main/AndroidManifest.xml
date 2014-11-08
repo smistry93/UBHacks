@@ -2,15 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.sunnymistry.ubhackingproject" >
 
-<<<<<<< HEAD
-    <uses-permission android:name="android.permission.CAMERA" />
-    <uses-feature android:name="android.hardware.camera" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-=======
+
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
->>>>>>> c2605fae02f429cb54c861554fe885d019dde429
 
     <application
         android:allowBackup="true"
